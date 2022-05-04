@@ -1,38 +1,15 @@
-package com.dio.santander.bankline.api.model;
+package com.dio.santander.bankline.api.dto;
 
 import com.dio.santander.bankline.api.enuns.MovimentacaoTipo;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-@Entity
-@Table(name = "tab_movimentacao")
-public class Movimentacao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "data_hora")
-    private LocalDateTime dataHora;
+
+public class MovimentacaoDTO {
     private String descricao;
     private BigDecimal valor;
-    @Enumerated(EnumType.STRING)
     private MovimentacaoTipo tipo;
-    @Column(name = "id_conta")
     private Integer idConta;
-
-    public Movimentacao() {
-
-    }
-    public Integer getId() {
-        return id;
-    }
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -42,7 +19,7 @@ public class Movimentacao {
         this.descricao = descricao;
     }
 
-    public BigDecimal getValor() {
+    public BigDecimal  getValor() {
         return valor;
     }
 
@@ -66,46 +43,44 @@ public class Movimentacao {
         this.idConta = idConta;
     }
 
-    private Movimentacao(LocalDateTime dataHora, String descricao, BigDecimal valor, MovimentacaoTipo tipo,Integer idConta) {
-        this.dataHora = dataHora;
+    private MovimentacaoDTO(String descricao, BigDecimal  valor, MovimentacaoTipo tipo,Integer idConta) {
         this.descricao = descricao;
         this.valor = valor;
         this.tipo = tipo;
         this.idConta=idConta;
     }
-    public static class MovimentacaoBuild{
+    public static class MovimentacaoDTOBuild{
 
         private LocalDateTime dataHora;
         private String descricao;
         private BigDecimal  valor;
         private MovimentacaoTipo tipo;
-
         private Integer idConta;
 
-        public MovimentacaoBuild() {
+        public MovimentacaoDTOBuild() {
         }
-        public MovimentacaoBuild dataHora(LocalDateTime dataHora){
+        public MovimentacaoDTOBuild dataHora(LocalDateTime dataHora){
             this.dataHora=dataHora;
             return this;
         }
-        public MovimentacaoBuild descricao(String descricao){
+        public MovimentacaoDTOBuild descricao(String descricao){
             this.descricao=descricao;
             return this;
         }
-        public MovimentacaoBuild valor(BigDecimal  valor){
+        public MovimentacaoDTOBuild valor(BigDecimal valor){
             this.valor=valor;
             return this;
         }
-        public MovimentacaoBuild tipo(MovimentacaoTipo tipo){
+        public MovimentacaoDTOBuild tipo(MovimentacaoTipo tipo){
             this.tipo=tipo;
             return this;
         }
-        public MovimentacaoBuild idConta(Integer idConta){
+        public MovimentacaoDTOBuild idConta(Integer idConta){
             this.idConta=idConta;
             return this;
         }
-        public Movimentacao create(){
-            return new Movimentacao(this.dataHora,this.descricao,this.valor,this.tipo,this.idConta);
+        public MovimentacaoDTO create(){
+            return new MovimentacaoDTO(this.descricao,this.valor,this.tipo,this.idConta);
         }
     }
 }
