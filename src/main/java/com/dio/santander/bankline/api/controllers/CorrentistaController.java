@@ -23,6 +23,6 @@ public class CorrentistaController {
     @PostMapping
     public ResponseEntity<Correntista>save(@RequestBody CorrentistaDTO correntistaDTO){
         Correntista correntista = correntistaService.save(correntistaDTO);
-       return ResponseEntity.status(HttpStatus.CREATED).body(correntista);
+        return ResponseEntity.status(HttpStatus.CREATED).body(correntista);
     }
 }
